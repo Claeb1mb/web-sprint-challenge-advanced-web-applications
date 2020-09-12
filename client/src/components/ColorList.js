@@ -12,7 +12,6 @@ const ColorList = ({ colors, updateColors }) => {
   console.log(colors);
   const [editing, setEditing] = useState(false);
   const [colorToEdit, setColorToEdit] = useState(initialColor);
-  const { id } = useParams();
 
   const editColor = (color) => {
     setEditing(true);
@@ -38,7 +37,7 @@ const ColorList = ({ colors, updateColors }) => {
       .delete(`http://localhost:5000/api/colors/${colorToEdit.id}`)
       .then((res) => {
         console.log("delete", res.data);
-        setColorToEdit(res.data);
+        setColorToEdit(res.data.id.color);
       })
       .catch((err) => console.log(err));
   };
